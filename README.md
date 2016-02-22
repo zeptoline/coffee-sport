@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Installations Sportives des Pays de la Loire
 
 ## Prise en main de Python
@@ -67,3 +68,6 @@ L'application est composée de plusieurs composants ayant chacun un rôle bien d
 * Le composant `Application web` est destinée aux internautes et a pour rôle de proposer les fonctionnalités de l'application au travers de pages web.
 
 ![architecture.png](images/architecture.png)
+=======
+# coffee-sport
+>>>>>>> 79e15d02f340a9950b24660d8fbfba140d69000e
