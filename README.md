@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Installations Sportives des Pays de la Loire
 
 ## Prise en main de Python
@@ -13,19 +12,19 @@ Vérifier votre version de Python en lançant la commande `python` ou `python3` 
 
 ```
 $> python3
-Python 3.2.3 (default, Jun 18 2015, 21:46:58) 
+Python 3.2.3 (default, Jun 18 2015, 21:46:58)
 [GCC 4.6.3] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
->>> 
+>>>
 ```
 
 ### Exercice
 
-Voici un exercice de prise en main du langage : 
+Voici un exercice de prise en main du langage :
 
 > Ecrivez un programme qui demande un nombre à l'utilisateur, qui détermine si le nombre est un nombre premier et qui affiche le résultat.
 
-Quelques conseils : 
+Quelques conseils :
 
 * Ne mettez pas tout votre code dans un seul fichier.
 * Ecrivez des tests unitaires.
@@ -40,9 +39,9 @@ Regardez ici : https://gist.github.com/sebprunier/2b1dc6047434b10af8fb
 
 L'objectif est de développer une application manipulants des données relatives aux installations sportives de la région Pays de la Loire.
 
-Les données sont issues de [http://data.paysdelaloire.fr](http://data.paysdelaloire.fr). 
+Les données sont issues de [http://data.paysdelaloire.fr](http://data.paysdelaloire.fr).
 
-Trois jeux de données sont à récupérer, au format CSV : 
+Trois jeux de données sont à récupérer, au format CSV :
 
 * [Installations](http://data.paysdelaloire.fr/donnees/detail/equipements-sportifs-espaces-et-sites-de-pratiques-en-pays-de-la-loire-fiches-installations)
 * [Equipements](http://data.paysdelaloire.fr/donnees/detail/equipements-sportifs-espaces-et-sites-de-pratiques-en-pays-de-la-loire-fiches-equipements)
@@ -50,7 +49,7 @@ Trois jeux de données sont à récupérer, au format CSV :
 
 Toutes les colonnes des fichiers CSV ne vont pas forcément nous intéresser. N'utilisez que celle que vous trouvez intéressantes ! Par exemple pour les installations, l'adresse et les coordonnées GPS sont des données facilement exploitables (affichage sur une Google Map par exemple).
 
-Des liens existent entre les trois jeux de données : 
+Des liens existent entre les trois jeux de données :
 
 * une installation possède un ou plusieurs équipements
 * une ou plusieurs activités peuvent être pratiquées sur un équipement donné.
@@ -68,6 +67,3 @@ L'application est composée de plusieurs composants ayant chacun un rôle bien d
 * Le composant `Application web` est destinée aux internautes et a pour rôle de proposer les fonctionnalités de l'application au travers de pages web.
 
 ![architecture.png](images/architecture.png)
-=======
-# coffee-sport
->>>>>>> 79e15d02f340a9950b24660d8fbfba140d69000e
