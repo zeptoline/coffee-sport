@@ -16,20 +16,21 @@ class Activite:
         self.activite_code = v5
         self.activite_libelle = v6
 
+    # fonction pour afficher un equipement
     def afficher(self):
         print("Nom commune : ",self.nom_commune," code insee : ",self.code_insee)
 
 ## EXECUTION ##
 list = []
+
+# fonction qui permet de lire un csv
 def lireCSV():
     with open('/hometu/etudiants/h/e/E146187Z/Cours/semestre4/Prod. logiciel/installations-sportives-pdl-master/data/activites.csv', 'r') as file:
         reader = csv.reader(file)
         for row in reader:
             list.append(Activite(row[0],row[1],row[2],row[3],row[4],row[5]))
 
+# fonction qui permet d'afficher le contenu du csv
 def afficherList():
     for elt in list:
         elt.afficher()
-
-# lireCSV()
-# afficherList()

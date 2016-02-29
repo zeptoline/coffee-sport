@@ -16,21 +16,21 @@ class Equipement:
         self.num_fich_equipmt = v5
         self.nom_equipmt = v6
 
+    # fonction pour afficher un equipement
     def afficher(self):
         print("Nom : ",self.nom_equipmt," numero : ",self.num_fich_equipmt)
 
-
 ## EXECUTION ##
 list = []
+
+# fonction qui permet de lire un csv
 def lireCSV():
     with open('/hometu/etudiants/h/e/E146187Z/Cours/semestre4/Prod. logiciel/installations-sportives-pdl-master/data/equipements.csv', 'r') as file:
         reader = csv.reader(file)
         for row in reader:
             list.append(Equipement(row[0],row[1],row[2],row[3],row[4],row[5]))
 
+# fonction qui permet d'afficher le contenu du csv
 def afficherList():
     for elt in list:
         elt.afficher()
-
-# lireCSV()
-# afficherList()
