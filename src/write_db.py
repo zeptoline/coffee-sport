@@ -1,5 +1,6 @@
 import mysql.connector
 
+# fonction qui crée les tables si elles n'existent pas déjà
 def create_table(db) :
     print("création des tables")
     db.cursor().execute(
@@ -33,7 +34,7 @@ def create_table(db) :
                 ")")
     print("tables crées")
 
-
+# fonction qui ajoute une ligne à une table
 def add_to_table(db, table, values) :
     add_activite = ("INSERT INTO Activite_db "
                "(code_insee, nom_commune, num_fich_equipmt, nb_equipmt_ident, activite_code, activite_libelle) "
