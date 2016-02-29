@@ -23,14 +23,14 @@ type_objet={
 
 list = []
 
-def lireCSV(nomFichier):
+def importCSV(nomFichier):
     fname = os.path.dirname(os.path.abspath(__file__))+"/../data/"+nomFichier
     tname = type_objet[nomFichier]+"_db";
-    cursor.execute("TRUNCATE TABLE "+tname)
+    cursor.execute("TRUNCATE TABLE "+tname) #On vide la table
     with open(fname, 'r') as file:
         reader = csv.reader(file)
+        next(reader)
         for row in reader:
-            #list.append(type_objet[nomFichier](row[0],row[1],row[2],row[3],row[4],row[5]))
             add_to_table(db, tname, row)
 
 def afficherList():
