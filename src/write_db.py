@@ -57,3 +57,30 @@ def add_to_table(db, table, values) :
     elif(table == "Installation_db"):
         db.cursor().execute(add_installation, data)
     db.commit()
+
+def select_from_table(db, table) :
+    cursor = db.cursor()
+
+    select_activite = ("SELECT * FROM Activite_db")
+
+    select_equipement = ("SELECT * FROM Equipement_db")
+
+    select_installation = ("SELECT * FROM Installation_db")
+
+    if(table == "Activite_db"):
+        cursor.execute(select_activite)
+    elif(table == "Equipement_db"):
+        cursor.execute(select_equipement)
+    elif(table == "Installation_db"):
+        cursor.execute(select_installation)
+
+    num_fields = len(cursor.description)
+    field_names = [i[0] for i in cursor.description]
+
+    print(field_names)
+
+    rows = cursor.fetchall()
+
+    result = [field_names]
+    result.append(rows)
+    return result
