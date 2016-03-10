@@ -1,11 +1,13 @@
-from bottle import route, run, template
+from bottle import route, run, template, static_file, post, get
 from importCSV import importCSV
 from read_db import read_from_db
-
+from read_db import read_from_db_json
+import json
 
 @route('/')
 def acceuil():
-    return '''
+    return
+    '''
         <h1>Export vers la BDD</h1>
         </br>
         <a href="./import/activites">activites from csv</a>
@@ -76,37 +78,20 @@ def export_to_db():
         </script>
     '''
 
-@route('/view/activites')
+@post('/view/activites')
 def view_from_db():
-    res = read_from_db("activites.csv")
-    return '''
-        <h1> Resultat de Activite </h1>
-        </br>
-    '''+res+'''
-        </br>
-        <a href="./../">Acceuil</a>
-    '''
+    res = json.dumps(read_from_db_json("activites.csv"))
+    return res
 
-@route('/view/installations')
+@post('/view/installations')
 def view_from_db():
-    res = read_from_db("installations.csv")
-    return '''
-        <h1> Resultat de Installation </h1>
-        </br>
-    '''+res+'''
-        </br>
-        <a href="./../">Acceuil</a>
-    '''
+    res = json.dumps(read_from_db_json("installations.csv"))
+    return res
 
-@route('/view/equipements')
+@post('/view/equipements')
 def view_from_db():
-    res = read_from_db("equipements.csv")
-    return '''
-        <h1> Resultat de Equipement </h1>
-        </br>
-    '''+res+'''
-        </br>
-        <a href="./../">Acceuil</a>
-    '''
+    res = json.dumps(read_from_db_json("equipements.csv"))
+    return res
+
 
 run(host='localhost', port=8080, debug=True)

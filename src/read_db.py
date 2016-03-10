@@ -61,3 +61,31 @@ def read_from_db(nomFichier):
     res += '</table>'
     deconnection(db)
     return res
+
+def read_from_db_json(nomFichier):
+    db = connection()
+    tname = type_objet[nomFichier]+"_db";
+
+    # select sur la base de données
+    result = select_from_table(db, tname)
+    # nom des colonnes de la tables
+    res = {}
+
+    id1 = str(result[0][0]).replace("_", " ")
+    id2 = str(result[0][1]).replace("_", " ")
+    id3 = str(result[0][2]).replace("_", " ")
+    id4 = str(result[0][3]).replace("_", " ")
+    id5 = str(result[0][4]).replace("_", " ")
+    id6 = str(result[0][5]).replace("_", " ")
+
+    # données de la table
+    for row in result[1]:
+        dict = {id1:row[0],
+                id2:row[1],
+                id3:row[2],
+                id4:row[3],
+                id5:row[4],
+                id6:row[5]}
+        res[len(res)] = dict
+    deconnection(db)
+    return res
