@@ -1,10 +1,31 @@
-from bottle import route, run, template, static_file, post, get
+import bottle
+from bottle import route, run, template, static_file, post, get, response
 from importCSV import importCSV
 from read_db import read_from_db
 from read_db import read_from_db_json
 import json
 
-@route('/')
+class EnableCors(object):
+    name = 'enable_cors'
+    api = 2
+
+    def apply(self, fn, context):
+        def _enable_cors(*args, **kwargs):
+            # set CORS headers
+            response.headers['Access-Control-Allow-Origin'] = '*'
+            response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, OPTIONS'
+            response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+
+            if bottle.request.method != 'OPTIONS':
+                # actual request; reply with the actual response
+                return fn(*args, **kwargs)
+
+        return _enable_cors
+
+
+app = bottle.app()
+
+@app.route('/')
 def acceuil():
     return
     '''
@@ -27,8 +48,9 @@ def acceuil():
         <a href="./view/equipements">equipements</a>
     '''
 
-@route('/import/activites')
+@app.route('/import/activites', method=['OPTIONS', 'GET'])
 def export_to_db():
+    response.headers['Content-type'] = 'application/json'
     importCSV("activites.csv")
     return '''
         Exportation réussi
@@ -44,8 +66,9 @@ def export_to_db():
         </script>
     '''
 
-@route('/import/installations')
+@app.route('/import/installations', method=['OPTIONS', 'GET'])
 def export_to_db():
+    response.headers['Content-type'] = 'application/json'
     importCSV("installations.csv")
     return '''
         Exportation réussi
@@ -61,8 +84,9 @@ def export_to_db():
         </script>
     '''
 
-@route('/import/equipements')
+@app.route('/import/equipements', method=['OPTIONS', 'GET'])
 def export_to_db():
+    response.headers['Content-type'] = 'application/json'
     importCSV("equipements.csv")
     return '''
         Exportation réussi
@@ -78,20 +102,23 @@ def export_to_db():
         </script>
     '''
 
-@post('/view/activites')
+@app.route('/view/activites', method=['OPTIONS', 'GET'])
 def view_from_db():
+    response.headers['Content-type'] = 'application/json'
     res = json.dumps(read_from_db_json("activites.csv"))
     return res
 
-@post('/view/installations')
+@app.route('/view/installations', method=['OPTIONS', 'GET'])
 def view_from_db():
+    response.headers['Content-type'] = 'application/json'
     res = json.dumps(read_from_db_json("installations.csv"))
     return res
 
-@post('/view/equipements')
+@app.route('/view/equipements', method=['OPTIONS', 'GET'])
 def view_from_db():
+    response.headers['Content-type'] = 'application/json'
     res = json.dumps(read_from_db_json("equipements.csv"))
     return res
 
-
-run(host='localhost', port=8080, debug=True)
+app.install(EnableCors())
+app.run(port=8080, debug=True)

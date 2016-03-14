@@ -1,86 +1,46 @@
 <DOCTYPE html>
 
-<html>
-<head>
- <link rel="stylesheet" type="text/css" href="assets/css/main.css" >
- <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" />
- <link href="http://html5up.net/hyperspace" rel="canonical">
- <link type="image/x-icon" href="/assets/icons/favicon.ico" rel="icon">
- <link href="/assets/icons/apple-touch-icon-precomposed.png" rel="apple-touch-icon-precomposed">
- <title>Coffee-Sport | HTML5 UP</title>
+  <html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css" >
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" />
+    <link href="http://html5up.net/hyperspace" rel="canonical">
+    <link type="image/x-icon" href="/assets/icons/favicon.ico" rel="icon">
+    <link href="/assets/icons/apple-touch-icon-precomposed.png" rel="apple-touch-icon-precomposed">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="script/bottle.js"></script>
+    <title>Coffee-Sport | HTML5 UP</title>
 
- <meta charset="utf-8">
-</head>
-<body>
-  <section id="sidebar">
-
-    <div class="inner">
-      <div class="content">
-        <nav>
-          <ul>
-            <li>
-              <a class="scrolly active" href="#intro">Accueil</a>
-            </li>
-            <li>
-              <a class="scrolly" href="#one">Want some coffee</a>
-            </li>
-            <li>
-              <a class="scrolly" href="#two">Thesis: Coffee more powerfull than EPO</a>
-            </li>
-            <li>
-              <a class="scrolly" href="#three">Contact us</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </section>
-  <section class="wrapper style1 fullscreen fade-up" id="intro" >
-    <div class="inner" >
-      <form action="localhost.py"style="">
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <section class="wrapper style1 fullscreen fade-up" id="intro" >
+      <div class="inner" >
         <h1>Bienvenue sur le site du projet Coffee-Sport</h1>
-          <h2>Dans quelle Ville?</h2>
-          <input type="text" name="ville"placeholder="ex: Mouais">
-          <h2>quel type d'activité?</h2>
-          <input type="text" name="activite" placeholder="ex: Tatamis">
-          <button type="submit" value="submit" name="submit" id="submit"><h3>Submit</h3></button>
+        <form action="#div"style="">
+          <button type="submit" value="submit" name="submit" id="submit_ins"><h3>Afficher les installations</h3></button>
         </form>
-    </div>
-  </section>
+        <form action="#div"style="">
+          <button type="submit" value="submit" name="submit" id="submit_act"><h3>Afficher les activités</h3></button>
+        </form>
+        <form action="#div"style="">
+          <button type="submit" value="submit" name="submit" id="submit_eqpt"><h3>Afficher les équipements</h3></button>
+        </form>
+      </div>
+    </section>
+    <!-- DATA -->
     <section id="one"class="wrapper style2 spotlights">
-      <div class="inner">
-        <center><h1>ICI VOS VILLES</h1></center>
-        <table>
-          <thead>
-            <th>Lorem</th>
-            <th>Ipsum</th>
-            <th> sin</th>
-          </thead>
-          <tr>
-            <td>Il est comme un arbre planté près d'un courant d'eau, qui donne son fruit en sa saison, et dont le feuillage ne se flétrit point : tout ce qu'il fait lui réussit.</td>
-            <td>Il n'en est pas ainsi des méchants : ils sont comme la paille que le vent dissipe.</td>
-            <td>C'est pourquoi les méchants ne résistent pas au jour du jugement, ni les pécheurs dans l'assemblée des justes ; car l'Éternel connaît la voie des justes, et la voie des pécheurs mène à la ruine.</td>
-          </tr>
-          <tr>
-            <td>Pourquoi ce tumulte parmi les nations, ces vaines pensées parmi les peuples ?</td>
-            <td>Pourquoi les rois de la terre se soulèvent-ils Et les princes se liguent-ils avec eux Contre l'Éternel et contre son oint ?
-Brisons leurs liens, délivrons-nous de leurs chaînes !</td>
-            <td>Celui qui siège dans les cieux rit, le Seigneur se moque d'eux.</td>
-          </tr>
-          <tr>
-            <td>Heureux l'homme qui ne marche pas selon le conseil des méchants, qui ne s'arrête pas sur la voie des pécheurs, et qui ne s'assied pas en compagnie des moqueurs, mais qui trouve son plaisir dans la loi de l'Éternel, et qui la médite jour et nuit !</td>
-            <td>Il est comme un arbre planté près d'un courant d'eau, qui donne son fruit en sa saison, et dont le feuillage ne se flétrit point : tout ce qu'il fait lui réussit.</td>
-            <td>point : tout ce qu'il fait lui réussit.
-Il n'en est pas ainsi des méchants : ils sont comme la paille que le vent dissipe.</td>
-          </tr>
-          <tr>
-            <td>C'est pourquoi les méchants ne résistent pas au jour du jugement, ni les pécheurs dans l'assemblée des justes ; car l'Éternel connaît la voie des justes, et la voie des pécheurs mène à la ruine.</td>
-            <td>Pourquoi ce tumulte parmi les nations, ces vaines pensées parmi les peuples ?</td>
-            <td>Pourquoi les rois de la terre se soulèvent-ils Et les princes se liguent-ils avec eux Contre l'Éternel et contre son oint ?</td>
-          </tr>
+      <div class="inner" id="div">
+        <center><h1>Les Données</h1></center>
+        <table id="data">
+
         </table>
+        <button id="dec">-</button><button id="inc">+</button>
+      </div>
+    </section>
+
       </div>
     </section>
   </body>
 
-</html>
+  </html>
