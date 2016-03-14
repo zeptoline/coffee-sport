@@ -1,21 +1,30 @@
 $(function(){
   var min = 0;
   var max = 100;
-
+  function init_button() {
+    min = 0;
+    max = 100;
+    $('#dec').prop('disabled', true);
+    $('#inc').prop('disabled', false);
+  }
+  init_button();
   function incr() {
+    $('#dec').prop('disabled', false);
     min += 100;
     max += 100;
   }
   function decr() {
     min -= 100;
     max -= 100;
+    if(min == 0)
+      $('#dec').prop('disabled', true);
   }
 
 
   function create_table(fichier) {
     $.ajax({
       // chargement du fichier externe
-      url      : "http://localhost:8080/view/"+fichier,
+      url      : "http://172.21.65.162:8080/view/"+fichier,
       // Passage des données au fichier externe
       cache    : false,
       dataType : "json",
@@ -66,18 +75,15 @@ $(function(){
 
 
   $("#submit_ins").on("click", function() {
-    min = 0;
-    max = 100;
+    init_button();
     create_table("installations");
   });
   $("#submit_act").on("click", function() {
-    min = 0;
-    max = 100;
+    init_button();
     create_table("activites");
   });
   $("#submit_eqpt").on("click", function() {
-    min = 0;
-    max = 100;
+    init_button();
     create_table("equipements");
   });
 
