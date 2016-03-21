@@ -1,0 +1,85 @@
+<DOCTYPE html>
+
+  <html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css" >
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" />
+    <link href="http://html5up.net/hyperspace" rel="canonical">
+    <link type="image/x-icon" href="/assets/icons/favicon.ico" rel="icon">
+    <link href="/assets/icons/apple-touch-icon-precomposed.png" rel="apple-touch-icon-precomposed">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="script/bottle.js"></script>
+    <title>Coffee-Sport | HTML5 UP</title>
+
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <section class="wrapper style1 fullscreen fade-up" id="intro" >
+      <div class="inner" >
+        <h1>Bienvenue sur le site du projet Coffee-Sport</h1>
+        <form action=""style="">
+          <button type="submit" value="submit" name="submit" id="submit_ins"><h3>Afficher les installations</h3></button>
+        </form>
+        <form action=""style="">
+          <button type="submit" value="submit" name="submit" id="submit_act"><h3>Afficher les activités</h3></button>
+        </form>
+        <form action=""style="">
+          <button type="submit" value="submit" name="submit" id="submit_eqpt"><h3>Afficher les équipements</h3></button>
+        </form>
+
+    <!-- RECHERCHE-->
+    <form action="#div">
+      <div class="field half first">
+        <p>Choisissez le type de recherche ici</p>
+        <select>
+          <option value="installations">Installation</option>
+          <option value="activites">Activités</option>
+          <option value="equipements">Equipements</option>
+        </select>
+      </div>
+      <div class="field half">
+        <p>Entrez votre recherche ici</p>
+        <input type="text" placeholder="recherche"></input>
+        <button type="submit">Recherche</button>
+      </div>
+    </div>
+  </section>
+
+
+    </form>
+    <!-- INSTALLATIONS -->
+    <section id="one"class="wrapper style2 spotlights">
+      <div class="inner donnee" id="installations">
+        <center><h1>Les Installations</h1></center>
+        <table style="min-height:500px" id="data_installations">
+
+        </table>
+        <button id="dec_ins">←</button><button id="inc_ins" style="float:right">→</button>
+      </div>
+    </section>
+    <!-- ACTIVITES -->
+    <section id="one"class="wrapper style2 spotlights">
+      <div class="inner donnee" id="activites">
+        <center><h1>Les Activités</h1></center>
+        <table id="data_activites">
+
+        </table>
+        <button id="dec_act">←</button><button id="inc_act" style="float:right">→</button>
+      </div>
+    </section>
+    <!-- EQUIPEMENTS -->
+    <section id="one"class="wrapper style2 spotlights ">
+      <div class="inner donnee" id="equipements">
+        <center><h1>Les Equipements</h1></center>
+        <table id="data_equipements">
+
+        </table>
+        <button id="dec_eqpt">←</button><button id="inc_eqpt" style="float:right">→</button>
+      </div>
+    </section>
+
+
+
+  </body>
+
+  </html>
