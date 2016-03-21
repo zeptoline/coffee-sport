@@ -4,6 +4,11 @@ from importCSV import importCSV
 from read_db import read_from_db
 from read_db import read_from_db_json
 import json
+#### pour recup l'ip ####
+import os
+f = os.popen('ifconfig eth0 | grep "inet\ addr" | cut -d: -f2 | cut -d" " -f1')
+ip=f.read()
+#########################
 
 class EnableCors(object):
     name = 'enable_cors'
@@ -121,4 +126,5 @@ def view_from_db():
     return res
 
 app.install(EnableCors())
-app.run(port=8080, debug=True)
+
+app.run(host=ip ,port=8080, debug=True)
