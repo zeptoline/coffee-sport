@@ -25,7 +25,7 @@ list = []
 
 # fonction qui permet de lire un csv
 def lireCSV():
-    with open('/hometu/etudiants/h/e/E146187Z/Cours/semestre4/Prod. logiciel/installations-sportives-pdl-master/data/equipements.csv', 'r') as file:
+    with open('/hometu/etudiants/h/e/E146187Z/Cours/semestre4/Prod. logiciel/coffee-sport/data/equipements.csv', 'r') as file:
         reader = csv.reader(file)
         for row in reader:
             list.append(Equipement(row[0],row[1],row[2],row[3],row[4],row[5]))

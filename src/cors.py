@@ -15,7 +15,6 @@ class EnableCors(object):
             if bottle.request.method != 'OPTIONS':
                 # actual request; reply with the actual response
                 return fn(*args, **kwargs)
-
         return _enable_cors
 
 

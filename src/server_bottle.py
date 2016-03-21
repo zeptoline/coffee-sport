@@ -5,9 +5,9 @@ from read_db import read_from_db
 from read_db import read_from_db_json
 import json
 #### pour recup l'ip ####
-import os
-f = os.popen('ifconfig eth0 | grep "inet\ addr" | cut -d: -f2 | cut -d" " -f1')
-ip=f.read()
+import socket
+ip = socket.gethostbyname(socket.gethostname())
+print("ip : ",ip)
 #########################
 
 class EnableCors(object):
@@ -24,7 +24,6 @@ class EnableCors(object):
             if bottle.request.method != 'OPTIONS':
                 # actual request; reply with the actual response
                 return fn(*args, **kwargs)
-
         return _enable_cors
 
 
@@ -127,4 +126,4 @@ def view_from_db():
 
 app.install(EnableCors())
 
-app.run(host=ip ,port=8080, debug=True)
+app.run(host=ip, port=8080, debug=True)
