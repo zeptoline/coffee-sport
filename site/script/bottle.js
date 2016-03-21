@@ -26,6 +26,9 @@ $(function(){
     $.ajax({
       // chargement du fichier externe
       url      : "http://172.21.65.162:8080/view/"+fichier,
+      // data     : {
+      //
+      // },
       // Passage des données au fichier externe
       cache    : false,
       dataType : "json",

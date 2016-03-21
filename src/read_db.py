@@ -89,3 +89,16 @@ def read_from_db_json(nomFichier):
         res[len(res)] = dict
     deconnection(db)
     return res
+
+## ACTIVITES ##
+# nom_commune
+# activite_libelle
+
+## INSTALLATIONS ##
+# nom_commune
+# nom_usuel_install
+
+## EQUIPEMENTS ##
+# nom_commune
+# nom_usuel_install
+# nom_equipmt
