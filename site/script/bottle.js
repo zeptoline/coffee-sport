@@ -15,7 +15,7 @@ $(function(){
   function create_table(fichier) {
     $.ajax({
       // chargement du fichier externe
-      url      : "http://localhost:8080/view/"+fichier,
+      url      : "http://172.21.65.162:8080/view/"+fichier,
       // Passage des données au fichier externe
       cache    : false,
       dataType : "json",
