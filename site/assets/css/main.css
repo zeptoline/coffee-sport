@@ -10,7 +10,13 @@ section {
 	min-height:100%;
 }
 
-
+.scrollToTop{
+	position:fixed;
+	bottom:75px;
+	right:40px;
+	display:none;
+	z-index: 999;
+}
 
 
 

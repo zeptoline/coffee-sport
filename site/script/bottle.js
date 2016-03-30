@@ -14,11 +14,12 @@ $(function(){
     min += 100;
     max += 100;
   }
-  function decrbt() {
+  function decr(bt) {
     min -= 100;
     max -= 100;
     if(min == 0)
     $('#dec_'+bt).prop('disabled', true);
+    $('#inc_'+bt).prop('disabled', false);
   }
 
 
@@ -164,6 +165,19 @@ $(function(){
   });
 
 
+  //Check to see if the window is top if not then display button
+  	$(window).scroll(function(){
+  		if ($(this).scrollTop() > 100) {
+  			$('.scrollToTop').fadeIn();
+  		} else {
+  			$('.scrollToTop').fadeOut();
+  		}
+  	});
 
+  	//Click event to scroll to top
+  	$('.scrollToTop').click(function(){
+  		$('html, body').animate({scrollTop : 0},800);
+  		return false;
+  	});
 
 });
