@@ -17,36 +17,53 @@
     <section class="wrapper style1 fullscreen fade-up" id="intro" >
       <div class="inner" >
         <h1>Bienvenue sur le site du projet Coffee-Sport</h1>
-        <form action=""style="">
-          <button type="submit" value="submit" name="submit" id="submit_ins"><h3>Afficher les installations</h3></button>
-        </form>
-        <form action=""style="">
-          <button type="submit" value="submit" name="submit" id="submit_act"><h3>Afficher les activités</h3></button>
-        </form>
-        <form action=""style="">
-          <button type="submit" value="submit" name="submit" id="submit_eqpt"><h3>Afficher les équipements</h3></button>
-        </form>
 
-    <!-- RECHERCHE-->
-    <form action="#div">
-      <div class="field half first">
-        <p>Choisissez le type de recherche ici</p>
-        <select>
-          <option value="installations">Installation</option>
-          <option value="activites">Activités</option>
-          <option value="equipements">Equipements</option>
-        </select>
+        <form action="javascript"style="">
+
+
+          <button type="button" class="revealbutton">Installations</button><br/><br/>
+          <div class="showdiv">
+            <div class="field half first">
+            </div>
+            <div class="field half">
+              <p>Entrez votre recherche ici</p>
+              <input type="text" placeholder="recherche"></input>
+              <button type="button" class="subutton" class="subutton" id="submit_ins">Afficher les installations</button>
+            </div>
+          </div>
+
+
+
+          <button type="button" class="revealbutton">Activités</button><br/><br/>
+          <div class="showdiv">
+            <div class="field half first">
+            </div>
+            <div class="field half">
+              <p>Entrez votre recherche ici</p>
+              <input type="text" placeholder="recherche"></input>
+              <button type="button" class="subutton" id="submit_act">Afficher les activités</button>
+            </div>
+          </div>
+
+
+
+          <button type="button" name="choice" class="revealbutton">Equipements</button><br/><br/>
+          <div class="showdiv">
+            <div class="field half first">
+            </div>
+            <div class="field half">
+              <p>Entrez votre recherche ici</p>
+              <input type="text" placeholder="recherche"></input>
+              <button  type="button" class="subutton" id="submit_eqpt">Afficher les equipements</button>
+            </div>
+          </div>
+
+
+        </form>
       </div>
-      <div class="field half">
-        <p>Entrez votre recherche ici</p>
-        <input type="text" placeholder="recherche"></input>
-        <button type="submit">Recherche</button>
-      </div>
-    </div>
-  </section>
+    </section>
 
 
-    </form>
     <!-- INSTALLATIONS -->
     <section id="one"class="wrapper style2 spotlights">
       <div class="inner donnee" id="installations">

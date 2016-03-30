@@ -25,7 +25,7 @@ $(function(){
   function create_table(fichier) {
     $.ajax({
       // chargement du fichier externe
-      url      : "http://172.21.65.162:8080/view/"+fichier,
+      url : "http://172.21.65.184:8080/view/"+fichier,
       // data     : {
       //
       // },
@@ -84,6 +84,9 @@ $(function(){
     init_button("ins");
     $(".donnee").css({"display":"none"});
     $("#installations").css({"display":"block"});
+    $('html, body').animate({
+        scrollTop: $("#installations").offset().top
+    }, 1000);
     create_table("installations");
   });
   $("#inc_ins").on("click", function() {
@@ -100,6 +103,9 @@ $(function(){
     init_button("act");
     $(".donnee").css({"display":"none"});
     $("#activites").css({"display":"block"});
+    $('html, body').animate({
+        scrollTop: $("#activites").offset().top
+    }, 1000);
     create_table("activites");
   });
   $("#inc_act").on("click", function() {
@@ -116,7 +122,12 @@ $(function(){
     init_button("eqpt");
     $(".donnee").css({"display":"none"});
     $("#equipements").css({"display":"block"});
+    $('html, body').animate({
+        scrollTop: $("#equipements").offset().top
+    }, 1000);
     create_table("equipements");
+
+
   });
   $("#inc_eqpt").on("click", function() {
     incr("eqpt");
@@ -126,5 +137,20 @@ $(function(){
     decr("eqpt");
     create_table("equipements");
   });
+
+
+  $(".showdiv").hide();
+  $(".revealbutton").click(function() {
+    if($(this).next().next().next().css('display') != 'none') {
+      $(".showdiv").hide("slow");
+    } else {
+      $(".showdiv").hide("slow");
+      $(this).next().next().next().show("slow");
+    }
+
+  });
+
+
+
 
 });
