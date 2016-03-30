@@ -35,11 +35,8 @@ $(function(){
 
     $.ajax({
       // chargement du fichier externe
-<<<<<<< HEAD
-      url : "http://172.21.65.184:8080/view/"+fichier,
-=======
-      url      : "http://172.21.65.73:8080/view/"+fichier+"/"+nom_commune+"/"+data2+"/"+data3,
->>>>>>> 0f6b59231ff9941e5705240f2b5cfaf5dc9c4481
+
+      url      : "http://172.21.65.184:8080/view/"+fichier+"/"+nom_commune+"/"+data2+"/"+data3,
       // data     : {
       //
       // },
