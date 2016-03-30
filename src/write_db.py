@@ -55,7 +55,9 @@ def add_to_table(db, table, values) :
     elif(table == "Equipement_db"):
         db.cursor().execute(add_equipement, data)
     elif(table == "Installation_db"):
+        data = (values[0], values[1], values[2], values[3], values[4], values[8])
         db.cursor().execute(add_installation, data)
+
     db.commit()
 
 def select_from_table(db, table, nom_commune=None, data2=None, data3=None) :
