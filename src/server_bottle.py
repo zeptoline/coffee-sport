@@ -106,22 +106,24 @@ def export_to_db():
         </script>
     '''
 
-@app.route('/view/activites', method=['OPTIONS', 'GET'])
-def view_from_db():
+    # nom_commune
+    # activite_libelle
+@app.route('/view/activites/<nom_commune>/<activite_libelle>/<autre>', method=['OPTIONS', 'GET'])
+def view_from_db(nom_commune, activite_libelle, autre):
     response.headers['Content-type'] = 'application/json'
-    res = json.dumps(read_from_db_json("activites.csv"))
+    res = json.dumps(read_from_db_json("activites.csv", nom_commune, activite_libelle, autre))
     return res
 
-@app.route('/view/installations', method=['OPTIONS', 'GET'])
-def view_from_db():
+@app.route('/view/installations/<nom_commune>/<nom_usuel_install>/<autre>', method=['OPTIONS', 'GET'])
+def view_from_db(nom_commune, nom_usuel_install, autre):
     response.headers['Content-type'] = 'application/json'
-    res = json.dumps(read_from_db_json("installations.csv"))
+    res = json.dumps(read_from_db_json("installations.csv", nom_commune, nom_usuel_install, autre))
     return res
 
-@app.route('/view/equipements', method=['OPTIONS', 'GET'])
-def view_from_db():
+@app.route('/view/equipements/<nom_commune>/<nom_usuel_install>/<nom_equipmt>', method=['OPTIONS', 'GET'])
+def view_from_db(nom_commune, nom_usuel_install, nom_equipmt):
     response.headers['Content-type'] = 'application/json'
-    res = json.dumps(read_from_db_json("equipements.csv"))
+    res = json.dumps(read_from_db_json("equipements.csv", nom_commune, nom_usuel_install, nom_equipmt))
     return res
 
 app.install(EnableCors())
