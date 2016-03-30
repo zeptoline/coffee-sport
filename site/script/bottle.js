@@ -22,10 +22,24 @@ $(function(){
   }
 
 
-  function create_table(fichier) {
+  function create_table(fichier, nom_commune, data2, data3) {
+    if(nom_commune == ""){
+      nom_commune = null;
+    }
+    if(data2 == ""){
+      data2 = null;
+    }
+    if(data3 == ""){
+      data3 = null;
+    }
+
     $.ajax({
       // chargement du fichier externe
+<<<<<<< HEAD
       url : "http://172.21.65.184:8080/view/"+fichier,
+=======
+      url      : "http://172.21.65.73:8080/view/"+fichier+"/"+nom_commune+"/"+data2+"/"+data3,
+>>>>>>> 0f6b59231ff9941e5705240f2b5cfaf5dc9c4481
       // data     : {
       //
       // },
@@ -44,7 +58,7 @@ $(function(){
         var html = "";
         var entete = [];
         for (var i in data[0])
-        entete.push(i);
+          entete.push(i);
 
         for(var i in data){
           for(var j in data[i]){
@@ -84,18 +98,20 @@ $(function(){
     init_button("ins");
     $(".donnee").css({"display":"none"});
     $("#installations").css({"display":"block"});
+
     $('html, body').animate({
         scrollTop: $("#installations").offset().top
     }, 1000);
-    create_table("installations");
+
+    create_table("installations", $("#commune").val(), $("#data2").val(), null);
   });
   $("#inc_ins").on("click", function() {
     incr("ins");
-    create_table("installations");
+    create_table("installations", $("#commune").val(), $("#data2").val(), null);
   });
   $("#dec_ins").on("click", function() {
     decr("ins");
-    create_table("installations");
+    create_table("installations", $("#commune").val(), $("#data2").val(), null);
   });
 
   // ACTIVITES //
@@ -106,15 +122,15 @@ $(function(){
     $('html, body').animate({
         scrollTop: $("#activites").offset().top
     }, 1000);
-    create_table("activites");
+    create_table("activites", $("#commune").val(), $("#data2").val(), null);
   });
   $("#inc_act").on("click", function() {
     incr("act");
-    create_table("activites");
+    create_table("activites", $("#commune").val(), $("#data2").val(), null);
   });
   $("#dec_act").on("click", function() {
     decr("act");
-    create_table("activites");
+    create_table("activites", $("#commune").val(), $("#data2").val(), null);
   });
 
   // EQUIPEMENTS //
@@ -125,17 +141,17 @@ $(function(){
     $('html, body').animate({
         scrollTop: $("#equipements").offset().top
     }, 1000);
-    create_table("equipements");
 
+    create_table("equipements", $("#commune").val(), $("#data2").val(), $("#data3").val());
 
   });
   $("#inc_eqpt").on("click", function() {
     incr("eqpt");
-    create_table("equipements");
+    create_table("equipements", $("#commune").val(), $("#data2").val(), $("#data3").val());
   });
   $("#dec_eqpt").on("click", function() {
     decr("eqpt");
-    create_table("equipements");
+    create_table("equipements", $("#commune").val(), $("#data2").val(), $("#data3").val());
   });
 
 

@@ -62,12 +62,12 @@ def read_from_db(nomFichier):
     deconnection(db)
     return res
 
-def read_from_db_json(nomFichier):
+def read_from_db_json(nomFichier, nom_commune, data2, data3):
     db = connection()
     tname = type_objet[nomFichier]+"_db";
 
     # select sur la base de données
-    result = select_from_table(db, tname)
+    result = select_from_table(db, tname, nom_commune, data2, data3);
     # nom des colonnes de la tables
     res = {}
 

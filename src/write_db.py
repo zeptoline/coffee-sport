@@ -58,15 +58,37 @@ def add_to_table(db, table, values) :
         db.cursor().execute(add_installation, data)
     db.commit()
 
-def select_from_table(db, table) :
+def select_from_table(db, table, nom_commune=None, data2=None, data3=None) :
     cursor = db.cursor()
 
-    select_activite = ("SELECT * FROM Activite_db")
+    condition = ""
+    if((nom_commune != "null") or (data2 != "null") or (data3 != "null")):
+        condition = "WHERE "
 
-    select_equipement = ("SELECT * FROM Equipement_db")
+        if(nom_commune != "null"):
+            condition += "nom_commune = '"+nom_commune+"' "
 
-    select_installation = ("SELECT * FROM Installation_db")
+        if(table == "Activite_db"):
+            if(data2 != "null"):
+                condition += "and activite_libelle = '"+data2+"' "
+        elif(table == "Equipement_db"):
+            if(data2 != "null"):
+                condition += "and nom_usuel_install = '"+data2+"' "
+            if(data3 != "null"):
+                condition += "and nom_equipmt = '"+data3+"' "
+        elif(table == "Installation_db"):
+            if(data2 != "null"):
+                condition += "and nom_usuel_install = '"+data2+"' "
 
+
+
+    select_activite = ("SELECT * FROM Activite_db "+condition)
+
+    select_equipement = ("SELECT * FROM Equipement_db "+condition)
+
+    select_installation = ("SELECT * FROM Installation_db "+condition)
+
+    print(select_activite)
     if(table == "Activite_db"):
         cursor.execute(select_activite)
     elif(table == "Equipement_db"):
