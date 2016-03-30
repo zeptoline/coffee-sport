@@ -91,21 +91,23 @@ $(function(){
 
         $("#data_"+fichier).html(html);
 
-        if(fichier == "activites"){
+        if(fichier == "installations"){
           var comm = -1;
-          $("#data_activites thead tr th").each(function(index) {
+          var instal = -1
+          $("#data_installations thead tr th").each(function(index) {
             if($(this).text() == "nom commune") {
               comm = index+1;
             }
+            if($(this).text() == "nom usuel install") {
+              instal = index+1;
+            }
           });
 
-          $("#data_activites tbody tr").each(function(index){
-            $(this).hover(function(e) {
-                $(this).css("background-color",e.type === "mouseenter"?"red":"transparent")
-            });
+          $("#data_installations tbody tr").each(function(index){
+            
             $(this).css("cursor", "pointer");
             $(this).on('click', function() {
-              var win = window.open("https://www.google.fr/maps/search/"+$(this).find("td:nth-child("+comm+")").text(), '_blank');
+              var win = window.open("https://www.google.fr/maps/search/"+$(this).find("td:nth-child("+comm+")").text()+"+"+$(this).find("td:nth-child("+instal+")").text(), '_blank');
               win.focus();
 
 
