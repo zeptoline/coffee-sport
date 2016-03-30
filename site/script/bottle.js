@@ -92,23 +92,25 @@ $(function(){
         $("#data_"+fichier).html(html);
 
         if(fichier == "installations"){
-          var comm = -1;
-          var instal = -1
+          var loc = -1;
           $("#data_installations thead tr th").each(function(index) {
-            if($(this).text() == "nom commune") {
-              comm = index+1;
-            }
-            if($(this).text() == "nom usuel install") {
-              instal = index+1;
+            if($(this).text() == "location") {
+              loc = index+1;
             }
           });
 
           $("#data_installations tbody tr").each(function(index){
-            
+
             $(this).css("cursor", "pointer");
             $(this).on('click', function() {
-              var win = window.open("https://www.google.fr/maps/search/"+$(this).find("td:nth-child("+comm+")").text()+"+"+$(this).find("td:nth-child("+instal+")").text(), '_blank');
+              var loca = $(this).find("td:nth-child("+loc+")").text();
+              var lat = loca.substring(1, loca.indexOf(","));
+
+              var longit = loca.substring(loca.indexOf(",")+2, loca.indexOf("]"));
+
+              var win = window.open("http://maps.google.com/maps?q="+lat+","+longit, '_blank');
               win.focus();
+
 
 
             });
