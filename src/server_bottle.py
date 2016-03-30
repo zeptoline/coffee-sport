@@ -1,8 +1,9 @@
 import bottle
-from bottle import route, run, template, static_file, post, get, response
+from bottle import route, run, template, static_file, post, get, response, request
 from importCSV import importCSV
 from read_db import read_from_db
 from read_db import read_from_db_json
+from read_db import get_commune_json
 import json
 #### pour recup l'ip ####
 import socket
@@ -113,6 +114,15 @@ def view_from_db(nom_commune, activite_libelle, autre):
     response.headers['Content-type'] = 'application/json'
     res = json.dumps(read_from_db_json("activites.csv", nom_commune, activite_libelle, autre))
     return res
+
+@app.route('/view/commune', method=['OPTIONS', 'GET'])
+def view_from_db():
+    response.headers['Content-type'] = 'application/json'
+    commune = request.GET.get('commune', '').strip()
+    table = request.GET.get('table', '').strip()
+    res = json.dumps(get_commune_json(table, commune))
+    return res
+
 
 @app.route('/view/installations/<nom_commune>/<nom_usuel_install>/<autre>', method=['OPTIONS', 'GET'])
 def view_from_db(nom_commune, nom_usuel_install, autre):

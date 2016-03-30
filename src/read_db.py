@@ -5,6 +5,7 @@ from installation import Installation
 from activite import Activite
 from equipement import Equipement
 from write_db import select_from_table
+from write_db import select_commune_from_table
 
 # list qui associe les nom de fichier au nom de classes et de tables
 type_objet={
@@ -27,7 +28,7 @@ def deconnection(db):
 # fonction qui permet l'importation d'un fichier csv dans la base de donnée
 def read_from_db(nomFichier):
     db = connection()
-    tname = type_objet[nomFichier]+"_db";
+    tname = type_objet[nomFichier]+"_db"
 
     # select sur la base de données
     result = select_from_table(db, tname)
@@ -64,10 +65,10 @@ def read_from_db(nomFichier):
 
 def read_from_db_json(nomFichier, nom_commune, data2, data3):
     db = connection()
-    tname = type_objet[nomFichier]+"_db";
+    tname = type_objet[nomFichier]+"_db"
 
     # select sur la base de données
-    result = select_from_table(db, tname, nom_commune, data2, data3);
+    result = select_from_table(db, tname, nom_commune, data2, data3)
     # nom des colonnes de la tables
     res = {}
 
@@ -90,6 +91,20 @@ def read_from_db_json(nomFichier, nom_commune, data2, data3):
     deconnection(db)
     return res
 
+
+
+def get_commune_json(table, commune=None):
+    db = connection()
+    # select sur la base de données
+    result = select_commune_from_table(db, table, commune)
+    # nom des colonnes de la tables
+    # res = {}
+    #
+    # # données de la table
+    # for row in result[1]:
+    #     res[len(res)] = row[0]
+    deconnection(db)
+    return result
 ## ACTIVITES ##
 # nom_commune
 # activite_libelle

@@ -1,4 +1,8 @@
 $(function(){
+  var ip = "http://172.21.65.184:8080";
+
+
+
   var min = 0;
   var max = 100;
   $(".donnee").css({"display":"none"});
@@ -37,7 +41,7 @@ $(function(){
     $.ajax({
       // chargement du fichier externe
 
-      url      : "http://172.21.65.184:8080/view/"+fichier+"/"+nom_commune+"/"+data2+"/"+data3,
+      url      : ip+"/view/"+fichier+"/"+nom_commune+"/"+data2+"/"+data3,
       // data     : {
       //
       // },
@@ -101,15 +105,15 @@ $(function(){
         scrollTop: $("#installations").offset().top
     }, 1000);
 
-    create_table("installations", $("#commune").val(), $("#nom_usuel_install").val(), null);
+    create_table("installations", $("#installations_commune").val(), $("#nom_usuel_install").val(), null);
   });
   $("#inc_ins").on("click", function() {
     incr("ins");
-    create_table("installations", $("#commune").val(), $("#nom_usuel_install").val(), null);
+    create_table("installations", $("#installations_commune").val(), $("#nom_usuel_install").val(), null);
   });
   $("#dec_ins").on("click", function() {
     decr("ins");
-    create_table("installations", $("#commune").val(), $("#nom_usuel_install").val(), null);
+    create_table("installations", $("#installations_commune").val(), $("#nom_usuel_install").val(), null);
   });
 
   // ACTIVITES //
@@ -120,15 +124,15 @@ $(function(){
     $('html, body').animate({
         scrollTop: $("#activites").offset().top
     }, 1000);
-    create_table("activites", $("#commune").val(), $("#activite_libelle").val(), null);
+    create_table("activites", $("#activites_commune").val(), $("#activite_libelle").val(), null);
   });
   $("#inc_act").on("click", function() {
     incr("act");
-    create_table("activites", $("#commune").val(), $("#activite_libelle").val(), null);
+    create_table("activites", $("#activites_commune").val(), $("#activite_libelle").val(), null);
   });
   $("#dec_act").on("click", function() {
     decr("act");
-    create_table("activites", $("#commune").val(), $("#activite_libelle").val(), null);
+    create_table("activites", $("#activites_commune").val(), $("#activite_libelle").val(), null);
   });
 
   // EQUIPEMENTS //
@@ -140,16 +144,16 @@ $(function(){
         scrollTop: $("#equipements").offset().top
     }, 1000);
 
-    create_table("equipements", $("#commune").val(), $("#nom_usuel_install").val(), $("#nom_equipmt").val());
+    create_table("equipements", $("#equipements_commune").val(), $("#nom_usuel_install").val(), $("#nom_equipmt").val());
 
   });
   $("#inc_eqpt").on("click", function() {
     incr("eqpt");
-    create_table("equipements", $("#commune").val(), $("#nom_usuel_install").val(), $("#nom_equipmt").val());
+    create_table("equipements", $("#equipements_commune").val(), $("#nom_usuel_install").val(), $("#nom_equipmt").val());
   });
   $("#dec_eqpt").on("click", function() {
     decr("eqpt");
-    create_table("equipements", $("#commune").val(), $("#nom_usuel_install").val(), $("#nom_equipmt").val());
+    create_table("equipements", $("#equipements_commune").val(), $("#nom_usuel_install").val(), $("#nom_equipmt").val());
   });
 
 
@@ -164,6 +168,67 @@ $(function(){
 
   });
 
+
+  $("#activites_commune").autocomplete({
+    source : function(requete, reponse){ // les deux arguments représentent les données nécessaires au plugin
+      $.ajax({
+        url : ip+"/view/commune", // on appelle le script JSON
+        dataType : 'json', // on spécifie bien que le type de données est en JSON
+        data : {
+          commune : $("#activites_commune").val(),
+          table : "Activite_db"},
+        success : function(donnee){
+          var index = 0;
+          reponse( $.map( donnee, function( item ){
+            if(index < 8) {
+              index++;
+              return item;
+            }
+          }) );
+        }
+      });
+    }
+  });
+  $("#equipements_commune").autocomplete({
+    source : function(requete, reponse){ // les deux arguments représentent les données nécessaires au plugin
+      $.ajax({
+        url : ip+"/view/commune", // on appelle le script JSON
+        dataType : 'json', // on spécifie bien que le type de données est en JSON
+        data : {
+          commune : $("#equipements_commune").val(),
+          table : "Equipement_db"},
+        success : function(donnee){
+          var index = 0;
+          reponse( $.map( donnee, function( item ){
+            if(index < 8) {
+              index++;
+              return item;
+            }
+          }) );
+        }
+      });
+    }
+  });
+  $("#installations_commune").autocomplete({
+    source : function(requete, reponse){ // les deux arguments représentent les données nécessaires au plugin
+      $.ajax({
+        url : ip+"/view/commune", // on appelle le script JSON
+        dataType : 'json', // on spécifie bien que le type de données est en JSON
+        data : {
+          commune : $("#installations_commune").val(),
+          table : "Installation_db"},
+        success : function(donnee){
+          var index = 0;
+          reponse( $.map( donnee, function( item ){
+            if(index < 8) {
+              index++;
+              return item;
+            }
+          }) );
+        }
+      });
+    }
+  });
 
   //Check to see if the window is top if not then display button
   	$(window).scroll(function(){

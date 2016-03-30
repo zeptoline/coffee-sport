@@ -106,3 +106,20 @@ def select_from_table(db, table, nom_commune=None, data2=None, data3=None) :
     result = [field_names]
     result.append(rows)
     return result
+
+
+def select_commune_from_table(db, table, commune=None) :
+    cursor = db.cursor()
+
+    select = ("SELECT DISTINCT nom_commune FROM "+table)
+    if(commune!=None):
+        select+= " WHERE nom_commune LIKE '"+commune+"%'"
+
+
+    cursor.execute(select)
+    rows = cursor.fetchall()
+    tab = []
+    for row in rows :
+        tab.append(row[0])
+
+    return tab
