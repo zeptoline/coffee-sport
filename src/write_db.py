@@ -82,21 +82,9 @@ def select_from_table(db, table, nom_commune=None, data2=None, data3=None) :
             if(data2 != "null"):
                 condition += "and nom_usuel_install = '"+data2+"' "
 
-
-
-    select_activite = ("SELECT * FROM Activite_db "+condition)
-
-    select_equipement = ("SELECT * FROM Equipement_db "+condition)
-
-    select_installation = ("SELECT * FROM Installation_db "+condition)
-
-    print(select_activite)
-    if(table == "Activite_db"):
-        cursor.execute(select_activite)
-    elif(table == "Equipement_db"):
-        cursor.execute(select_equipement)
-    elif(table == "Installation_db"):
-        cursor.execute(select_installation)
+    select= ("SELECT * FROM "+table+" "+condition)
+    print(select)
+    cursor.execute(select)
 
     num_fields = len(cursor.description)
     field_names = [i[0] for i in cursor.description]
