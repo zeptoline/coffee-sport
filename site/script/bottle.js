@@ -103,20 +103,12 @@ $(function(){
 
 
 
-          
+
         }
       }
     });
   }
 
-  function clickActivite() {
-
-
-    alert(comm);
-
-
-
-  }
 
   // INSTALLATIONS //
   $("#submit_ins").on("click", function() {
@@ -149,7 +141,6 @@ $(function(){
     }, 1000);
     create_table("activites", $("#activites_commune_act").val(), $("#activite_libelle_act").val(), null);
 
-    clickActivite();
   });
   $("#inc_act").on("click", function() {
     incr("act");
