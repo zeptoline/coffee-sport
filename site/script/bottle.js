@@ -95,11 +95,25 @@ $(function(){
           var comm = -1;
           $("#data_activites thead tr th").each(function(index) {
             if($(this).text() == "nom commune") {
-              comm = index;
+              comm = index+1;
             }
           });
 
+          $("#data_activites tbody tr").each(function(index){
+            $(this).hover(function(e) {
+                $(this).css("background-color",e.type === "mouseenter"?"red":"transparent")
+            });
+            $(this).css("cursor", "pointer");
+            $(this).on('click', function() {
+              var win = window.open("https://www.google.fr/maps/search/"+$(this).find("td:nth-child("+comm+")").text(), '_blank');
+              win.focus();
 
+
+            });
+
+
+
+          })
 
 
 
