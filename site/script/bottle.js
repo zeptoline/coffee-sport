@@ -1,5 +1,5 @@
 $(function(){
-  var ip = "http://188.166.171.162:8080";
+  var ip = "http://172.21.65.179:8080";
 
 
 
@@ -138,15 +138,15 @@ $(function(){
         scrollTop: $("#installations").offset().top
     }, 1000);
 
-    create_table("installations", $("#installations_commune_ins").val(), $("#nom_usuel_install_ins").val(), null);
+    create_table("installations", $("#installations_commune").val(), $("#nom_usuel_install_ins").val(), null);
   });
   $("#inc_ins").on("click", function() {
     incr("ins");
-    create_table("installations", $("#installations_commune_ins").val(), $("#nom_usuel_install_ins").val(), null);
+    create_table("installations", $("#installations_commune").val(), $("#nom_usuel_install_ins").val(), null);
   });
   $("#dec_ins").on("click", function() {
     decr("ins");
-    create_table("installations", $("#installations_commune_ins").val(), $("#nom_usuel_install_ins").val(), null);
+    create_table("installations", $("#installations_commune").val(), $("#nom_usuel_install_ins").val(), null);
   });
 
   // ACTIVITES //
@@ -157,16 +157,16 @@ $(function(){
     $('html, body').animate({
         scrollTop: $("#activites").offset().top
     }, 1000);
-    create_table("activites", $("#activites_commune_act").val(), $("#activite_libelle_act").val(), null);
+    create_table("activites", $("#activites_commune").val(), $("#activite_libelle_act").val(), null);
 
   });
   $("#inc_act").on("click", function() {
     incr("act");
-    create_table("activites", $("#activites_commune_act").val(), $("#activite_libelle_act").val(), null);
+    create_table("activites", $("#activites_commune").val(), $("#activite_libelle_act").val(), null);
   });
   $("#dec_act").on("click", function() {
     decr("act");
-    create_table("activites", $("#activites_commune_act").val(), $("#activite_libelle_act").val(), null);
+    create_table("activites", $("#activites_commune").val(), $("#activite_libelle_act").val(), null);
   });
 
   // EQUIPEMENTS //
@@ -178,16 +178,16 @@ $(function(){
         scrollTop: $("#equipements").offset().top
     }, 1000);
 
-    create_table("equipements", $("#equipements_commune_eqpt").val(), $("#nom_usuel_install_eqpt").val(), $("#nom_equipmt_eqpt").val());
+    create_table("equipements", $("#equipements_commune").val(), $("#nom_usuel_install_eqpt").val(), $("#nom_equipmt_eqpt").val());
 
   });
   $("#inc_eqpt").on("click", function() {
     incr("eqpt");
-    create_table("equipements", $("#equipements_commune_eqpt").val(), $("#nom_usuel_install_eqpt").val(), $("#nom_equipmt_eqpt").val());
+    create_table("equipements", $("#equipements_commune").val(), $("#nom_usuel_install_eqpt").val(), $("#nom_equipmt_eqpt").val());
   });
   $("#dec_eqpt").on("click", function() {
     decr("eqpt");
-    create_table("equipements", $("#equipements_commune_eqpt").val(), $("#nom_usuel_install_eqpt").val(), $("#nom_equipmt_eqpt").val());
+    create_table("equipements", $("#equipements_commune").val(), $("#nom_usuel_install_eqpt").val(), $("#nom_equipmt_eqpt").val());
   });
 
 
