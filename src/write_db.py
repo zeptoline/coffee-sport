@@ -60,6 +60,8 @@ def add_to_table(db, table, values) :
 
     db.commit()
 
+# fonction qui recupre les donnée de la base de donnée selon certain critère
+# fonctionne pour les 3 tables et les différents critères
 def select_from_table(db, table, nom_commune=None, data2=None, data3=None) :
     cursor = db.cursor()
 
@@ -97,7 +99,7 @@ def select_from_table(db, table, nom_commune=None, data2=None, data3=None) :
     result.append(rows)
     return result
 
-
+# fonction qui récupère les communes pour l'autocompletion
 def select_commune_from_table(db, table, commune=None) :
     cursor = db.cursor()
 

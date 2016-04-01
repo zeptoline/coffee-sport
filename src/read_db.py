@@ -63,6 +63,19 @@ def read_from_db(nomFichier):
     deconnection(db)
     return res
 
+### DATA ###
+## ACTIVITES ##
+# nom_commune
+#data2 activite_libelle
+
+## INSTALLATIONS ##
+# nom_commune
+#data2 nom_usuel_install
+
+## EQUIPEMENTS ##
+# nom_commune
+#data2 nom_usuel_install
+#data3 nom_equipmt
 def read_from_db_json(nomFichier, nom_commune, data2, data3):
     db = connection()
     tname = type_objet[nomFichier]+"_db"
@@ -92,28 +105,11 @@ def read_from_db_json(nomFichier, nom_commune, data2, data3):
     return res
 
 
-
+# fonction qui demande les communes pour l'autocompletion
 def get_commune_json(table, commune=None):
     db = connection()
     # select sur la base de données
     result = select_commune_from_table(db, table, commune)
-    # nom des colonnes de la tables
-    # res = {}
-    #
-    # # données de la table
-    # for row in result[1]:
-    #     res[len(res)] = row[0]
+    
     deconnection(db)
     return result
-## ACTIVITES ##
-# nom_commune
-# activite_libelle
-
-## INSTALLATIONS ##
-# nom_commune
-# nom_usuel_install
-
-## EQUIPEMENTS ##
-# nom_commune
-# nom_usuel_install
-# nom_equipmt

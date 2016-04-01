@@ -5,12 +5,15 @@ from read_db import read_from_db
 from read_db import read_from_db_json
 from read_db import get_commune_json
 import json
+
+
 #### pour recup l'ip ####
 import socket
 ip = socket.gethostbyname(socket.gethostname())
 print("ip : ",ip)
 #########################
 
+# autorisation cors
 class EnableCors(object):
     name = 'enable_cors'
     api = 2
@@ -29,6 +32,7 @@ class EnableCors(object):
 
 
 app = bottle.app()
+
 
 @app.route('/')
 def acceuil():
@@ -53,6 +57,7 @@ def acceuil():
         <a href="./view/equipements">equipements</a>
     '''
 
+# redirection pour l'importation des activités
 @app.route('/import/activites', method=['OPTIONS', 'GET'])
 def export_to_db():
     response.headers['Content-type'] = 'application/json'
@@ -70,7 +75,7 @@ def export_to_db():
             window.setTimeout(go_to_accueil, 3000);
         </script>
     '''
-
+# redirection pour l'importation des installaitons
 @app.route('/import/installations', method=['OPTIONS', 'GET'])
 def export_to_db():
     response.headers['Content-type'] = 'application/json'
@@ -88,7 +93,7 @@ def export_to_db():
             window.setTimeout(go_to_accueil, 3000);
         </script>
     '''
-
+# redirection pour l'importation des equipements
 @app.route('/import/equipements', method=['OPTIONS', 'GET'])
 def export_to_db():
     response.headers['Content-type'] = 'application/json'
@@ -107,14 +112,31 @@ def export_to_db():
         </script>
     '''
 
-    # nom_commune
-    # activite_libelle
+# redirection pour récupérer la table Activité en fonction des critères "nom_commune" et "activite_libelle"
+# autre ici ne sert pas
 @app.route('/view/activites/<nom_commune>/<activite_libelle>/<autre>', method=['OPTIONS', 'GET'])
 def view_from_db(nom_commune, activite_libelle, autre):
     response.headers['Content-type'] = 'application/json'
     res = json.dumps(read_from_db_json("activites.csv", nom_commune, activite_libelle, autre))
     return res
 
+# redirection pour récupérer la table Installation en fonction des critères "nom_commune" et "nom_usuel_install"
+# autre ici ne sert pas
+@app.route('/view/installations/<nom_commune>/<nom_usuel_install>/<autre>', method=['OPTIONS', 'GET'])
+def view_from_db(nom_commune, nom_usuel_install, autre):
+    response.headers['Content-type'] = 'application/json'
+    res = json.dumps(read_from_db_json("installations.csv", nom_commune, nom_usuel_install, autre))
+    return res
+
+# redirection pour récupérer la table Installation en fonction des critères "nom_commune" et "nom_usuel_install" et "nom_equipmt"
+@app.route('/view/equipements/<nom_commune>/<nom_usuel_install>/<nom_equipmt>', method=['OPTIONS', 'GET'])
+def view_from_db(nom_commune, nom_usuel_install, nom_equipmt):
+    response.headers['Content-type'] = 'application/json'
+    res = json.dumps(read_from_db_json("equipements.csv", nom_commune, nom_usuel_install, nom_equipmt))
+    return res
+
+
+# redirection pour écupérer les communes pour l'autocomplétion
 @app.route('/view/commune', method=['OPTIONS', 'GET'])
 def view_from_db():
     response.headers['Content-type'] = 'application/json'
@@ -123,19 +145,8 @@ def view_from_db():
     res = json.dumps(get_commune_json(table, commune))
     return res
 
-
-@app.route('/view/installations/<nom_commune>/<nom_usuel_install>/<autre>', method=['OPTIONS', 'GET'])
-def view_from_db(nom_commune, nom_usuel_install, autre):
-    response.headers['Content-type'] = 'application/json'
-    res = json.dumps(read_from_db_json("installations.csv", nom_commune, nom_usuel_install, autre))
-    return res
-
-@app.route('/view/equipements/<nom_commune>/<nom_usuel_install>/<nom_equipmt>', method=['OPTIONS', 'GET'])
-def view_from_db(nom_commune, nom_usuel_install, nom_equipmt):
-    response.headers['Content-type'] = 'application/json'
-    res = json.dumps(read_from_db_json("equipements.csv", nom_commune, nom_usuel_install, nom_equipmt))
-    return res
-
+# autorisation cors
 app.install(EnableCors())
 
+# on lance le serveur sur l'ip local et sur le port 8080
 app.run(host=ip, port=8080, debug=True)

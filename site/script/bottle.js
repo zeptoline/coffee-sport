@@ -1,23 +1,28 @@
 $(function(){
-  var ip = "http://172.21.65.179:8080";
+  // ip pour le site
+  var ip = "http://188.166.171.162:8080";
 
 
-
+// variables pour l'affichage du nombre de résultat
   var min = 0;
   var max = 100;
   $(".donnee").css({"display":"none"});
 
+// initialisation des boutons "page suivante" et "page précédente"
   function init_button(bt) {
     min = 0;
     max = 100;
     $('#dec_'+bt).prop('disabled', true);
     $('#inc_'+bt).prop('disabled', false);
   }
+
+  // fonction du bouton "page suivante"
   function incr(bt) {
     $('#dec_'+bt).prop('disabled', false);
     min += 100;
     max += 100;
   }
+  // fonction du bouton "page précédente"
   function decr(bt) {
     min -= 100;
     max -= 100;
@@ -26,7 +31,7 @@ $(function(){
     $('#inc_'+bt).prop('disabled', false);
   }
 
-
+  // fonction qui crée les tableaux sur le site
   function create_table(fichier, nom_commune, data2, data3) {
     if(nom_commune == ""){
       nom_commune = null;
@@ -39,13 +44,9 @@ $(function(){
     }
 
     $.ajax({
-      // chargement du fichier externe
-
+      // chargement du fichier externe avec les données
       url      : ip+"/view/"+fichier+"/"+nom_commune+"/"+data2+"/"+data3,
-      // data     : {
-      //
-      // },
-      // Passage des données au fichier externe
+
       cache    : false,
       dataType : "json",
       error    : function(request, error) { // Info Debuggage si erreur
@@ -53,8 +54,9 @@ $(function(){
       },
       success  : function(data) {
 
-        var target= $("#"+fichier);
+        var target= $("#"+fichier); // on déplace la vue vers le tableau
 
+        // traitement des données
         var result = [];
         var table = [];
         var html = "";
@@ -89,8 +91,10 @@ $(function(){
           }
         });
 
+        // ajout du tableau
         $("#data_"+fichier).html(html);
 
+        // trouve l'index de la localisation dans la table (elle est aléatoire)
         if(fichier == "installations"){
           var loc = -1;
           $("#data_installations thead tr th").each(function(index) {
@@ -99,6 +103,7 @@ $(function(){
             }
           });
 
+          // on ajoute un onClick pour redirigé vers une map sur toutes les installations
           $("#data_installations tbody tr").each(function(index){
 
             $(this).css("cursor", "pointer");
@@ -110,18 +115,8 @@ $(function(){
 
               var win = window.open("http://maps.google.com/maps?q="+lat+","+longit, '_blank');
               win.focus();
-
-
-
             });
-
-
-
           })
-
-
-
-
         }
       }
     });
@@ -129,6 +124,7 @@ $(function(){
 
 
   // INSTALLATIONS //
+  // bouton de recherche
   $("#submit_ins").on("click", function() {
     init_button("ins");
     $(".donnee").css({"display":"none"});
@@ -140,16 +136,19 @@ $(function(){
 
     create_table("installations", $("#installations_commune").val(), $("#nom_usuel_install_ins").val(), null);
   });
+  //bouton pour la page suivante
   $("#inc_ins").on("click", function() {
     incr("ins");
     create_table("installations", $("#installations_commune").val(), $("#nom_usuel_install_ins").val(), null);
   });
+  //bouton pour la page précédente
   $("#dec_ins").on("click", function() {
     decr("ins");
     create_table("installations", $("#installations_commune").val(), $("#nom_usuel_install_ins").val(), null);
   });
 
   // ACTIVITES //
+  // bouton de recherche
   $("#submit_act").on("click", function() {
     init_button("act");
     $(".donnee").css({"display":"none"});
@@ -160,16 +159,19 @@ $(function(){
     create_table("activites", $("#activites_commune").val(), $("#activite_libelle_act").val(), null);
 
   });
+  //bouton pour la page suivante
   $("#inc_act").on("click", function() {
     incr("act");
     create_table("activites", $("#activites_commune").val(), $("#activite_libelle_act").val(), null);
   });
+  //bouton pour la page précédente
   $("#dec_act").on("click", function() {
     decr("act");
     create_table("activites", $("#activites_commune").val(), $("#activite_libelle_act").val(), null);
   });
 
   // EQUIPEMENTS //
+  // bouton de recherche
   $("#submit_eqpt").on("click", function() {
     init_button("eqpt");
     $(".donnee").css({"display":"none"});
@@ -181,16 +183,19 @@ $(function(){
     create_table("equipements", $("#equipements_commune").val(), $("#nom_usuel_install_eqpt").val(), $("#nom_equipmt_eqpt").val());
 
   });
+  //bouton pour la page suivante
   $("#inc_eqpt").on("click", function() {
     incr("eqpt");
     create_table("equipements", $("#equipements_commune").val(), $("#nom_usuel_install_eqpt").val(), $("#nom_equipmt_eqpt").val());
   });
+  //bouton pour la page précédente
   $("#dec_eqpt").on("click", function() {
     decr("eqpt");
     create_table("equipements", $("#equipements_commune").val(), $("#nom_usuel_install_eqpt").val(), $("#nom_equipmt_eqpt").val());
   });
 
 
+  // animation des onglets sur l'Accueil
   $(".showdiv").hide();
   $(".revealbutton").click(function() {
     if($(this).next().next().next().css('display') != 'none') {
@@ -202,7 +207,7 @@ $(function(){
 
   });
 
-
+  // autocompletion activités
   $("#activites_commune").autocomplete({
     source : function(requete, reponse){ // les deux arguments représentent les données nécessaires au plugin
       $.ajax({
@@ -223,6 +228,7 @@ $(function(){
       });
     }
   });
+  // autocompletion équipements
   $("#equipements_commune").autocomplete({
     source : function(requete, reponse){ // les deux arguments représentent les données nécessaires au plugin
       $.ajax({
@@ -243,6 +249,7 @@ $(function(){
       });
     }
   });
+  // autocompletion installations
   $("#installations_commune").autocomplete({
     source : function(requete, reponse){ // les deux arguments représentent les données nécessaires au plugin
       $.ajax({
@@ -265,6 +272,7 @@ $(function(){
   });
 
   //Check to see if the window is top if not then display button
+  // vérification pour l'affichage du bouton de "haut de page"
   	$(window).scroll(function(){
   		if ($(this).scrollTop() > 100) {
   			$('.scrollToTop').fadeIn();
@@ -273,10 +281,9 @@ $(function(){
   		}
   	});
 
-  	//Click event to scroll to top
+  	//Action pour le bouton de "haut de page" pour ramener en haut
   	$('.scrollToTop').click(function(){
   		$('html, body').animate({scrollTop : 0},800);
   		return false;
   	});
-
 });
